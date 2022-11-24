@@ -1,0 +1,135 @@
+.about {
+    position: relative;
+    width: 100%;
+    height: 1024px;
+    background: rgba(248, 248, 248, 1);
+    display: flex;
+    justify-content: center;
+}
+
+.buttonBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    position: absolute;
+    width: 315px;
+    height: 235px;
+    /* left: 543px; */
+    top: 110px;
+    /* White */
+
+    background: #FFFFFF;
+    border-radius: 25px;
+}
+
+.btn1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 206px;
+    height: 55px;
+    /* C1 */
+    background: #A61D21;
+    box-shadow: 0px 10px 30px #F5F5F5;
+    border-radius: 20px;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.btn2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    height: 55px;
+    /* C1 */
+    background: #A61D21;
+    box-shadow: 0px 10px 30px #F5F5F5;
+    border-radius: 20px;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    width: 275px;
+}
+
+button {
+    font-family: 'Avalon';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 20px;
+    /* identical to box height, or 111% */
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.25px;
+    text-transform: uppercase;
+    /* White */
+    color: #FFFFFF;
+    background: none;
+    border: none;
+}
+
+.aboutContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    position: absolute;
+    padding: 30px;
+    top: 375px;
+    background: #FFFFFF;
+    border-radius: 30px;
+    max-width: 1140px;
+}
+
+.rowAbout {
+    display: flex;
+    padding: 0px;
+    gap: 30px;
+}
+
+
+.imgAbout>img {
+    width: 330px;
+    height: 376px;
+    border-radius: 30px;
+}
+
+.textAbout {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.headingAbout {
+    font-family: 'Avalon';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 58px;
+    letter-spacing: 0.05em;
+    text-transform: capitalize;
+    color: #000C1D;
+}
+
+.aboutParagraph {
+    font-family: 'Avalon';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 180%;
+    color: #616576;
+    word-wrap: break-word;
+    word-break: break-word;
+}

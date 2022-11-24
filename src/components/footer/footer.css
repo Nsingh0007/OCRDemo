@@ -1,0 +1,34 @@
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* padding: 15px 50px; */
+    gap: 10px;
+    position: absolute;
+    width: 100%;
+    height: 48px;
+    left: 0px;
+    top: 976px;
+    /* B1 */
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #333333;
+}
+
+.footerContentleft {
+    width: 197px;
+    height: 18px;
+    font-family: 'Avalon';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    /* identical to box height */
+    text-transform: capitalize;
+    /* Gray 4 */
+    color: #BDBDBD;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin-left: 50px;
+    margin-top: 15px;
+}
