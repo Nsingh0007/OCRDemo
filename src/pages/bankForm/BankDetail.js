@@ -7,30 +7,43 @@ import RightArrowIcon from "../../assets/images/arrow-right.png"
 import DownloadIcom from "../../assets/images/arrow-down.png"
 import "./bankDetail.css"
 import TableComponent from '../table/Table'
-
 const BankDetail = () => {
     var navigate = useNavigate();
     const cancel = () => {
         
     };
-    // var Item = {
-    //     date: "",
-    //     narration:"",
-    //     // Chq_No: 0,
-    //     debit:0,
-    //     credit:"",
-    //     balance:0
-    // }
+    var Item = {
+        date: "",
+        narration: "",
+        Chq_No: 0,
+        debit: 0,
+        credit: "",
+        balance: 0
+    }
+
+    var Item1 = {
+        ClosingBalance: "",
+        AverageBalance: ""
+    }
+
+    const balanceData = Item1 = [];
+    for (let j = 0; j < 100; j++) {
+        balanceData.push({
+            ClosingBalance: 6814.1 + `${j}`,
+            AverageBalance: 13058.00 + `${j}`
+        })
+
+    }
 
     const originData = [];
     for (let i = 0; i < 100; i++) {
         originData.push({
             date: `22/07/2022`,
-            narration:"UPI-rakesh babulal ganan-8424847649@ Y BL-SBIN0012703-130624266290-payment from phone",
-            // Chq_No: 000013062422 + {i},
+            narration: "UPI-rakesh babulal ganan-8424847649@ Y BL-SBIN0012703-130624266290-payment from phone",
+            Chq_No: 13062422 + `${i}`,
             debit: 7000.00,
-            credit:"Credit",
-            balance:8493.00 + {i}
+            credit: "Credit",
+            balance: 8493.00 + `${i}`
         });
     }
 
@@ -38,37 +51,37 @@ const BankDetail = () => {
         {
             title: 'Date',
             dataIndex: 'Date',
-            width: '100px',
+            width: '129.2px',
             editable: true,
         },
         {
             title: 'Narration',
             dataIndex: 'Narration',
-            width: '100px',
+            width: '327px',
             editable: true,
         },
         {
             title: 'Chq./Ref. No.',
             dataIndex: 'Chq./Ref. No.',
-            width: '100px',
+            width: '129.2px',
             editable: true,
         },
         {
             title: 'Debit',
             dataIndex: 'Debit',
-            width: '100px',
+            width: '129.2px',
             editable: true,
         },
         {
             title: 'Credit',
             dataIndex: 'Credit',
-            width: '100px',
+            width: '129.2px',
             editable: true,
         },
         {
             title: 'Balance',
             dataIndex: 'Balance',
-            width: '100px',
+            width: '129.2px',
             editable: true,
         },
     ];
@@ -107,10 +120,10 @@ const BankDetail = () => {
             </div>
             <div className='transaction'>
                 <div className='headerRow'>
-                    <div className='headingName'>
+                    <div className='headingName' style={{ width: "80%" }}>
                         Transaction
                     </div>
-                    <div className='headingName'>
+                    <div className='headingName' style={{ width: "23%" }}>
                         KPI
                     </div>
                 </div>
@@ -130,7 +143,39 @@ const BankDetail = () => {
                     <div className='tableBox'>
                         <TableComponent TableData={mergedColumns} dataSub={originData} onClick={cancel} />
                     </div>
-                    <div className='tableBox'></div>
+                    <div className='tableBox'>
+                        <table>
+                            <thead>
+                                <tr style={{ padding: "0px", gap: "2px" }}>
+                                    <th className='tableHead' style={{ width: "142.5px", background: "#E7E7E7", border: "1px solid #E7E7E7" }}>Opening Balance</th>
+                                    <th className='tableRowValue' style={{ width: "142.5px" }}> <div className='rowItem'>15493.00</div></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                {balanceData.map((item) => {
+                                    console.log("item", item);
+                                    return (
+                                        <>
+                                            {item.AverageBalance && (<>
+                                                <tr style={{ padding: "0px", gap: "2px" }}>
+                                                    <td className='tableHead' style={{ width: "142.5px", background: "#E7E7E7", border: "1px solid #E7E7E7" }}> <div className='rowItem'>Average Balance</div></td>
+                                                    <td className='tableRowValue'><div className='rowItem'>{item.AverageBalance}</div></td>
+                                                </tr></>)}
+
+                                            {item.ClosingBalance && (<>
+                                                <tr style={{ padding: "0px", gap: "2px" }}>
+                                                    <td className='tableHead' style={{ width: "142.5px", background: "#E7E7E7", border: "1px solid #E7E7E7" }}> <div className='rowItem'>Closing Balance</div></td>
+                                                    <td className='tableRowValue'><div className='rowItem'>{item.ClosingBalance}</div></td>
+                                                </tr></>)}
+                                        </>
+
+                                    )
+                                })}
+
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
