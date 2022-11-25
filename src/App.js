@@ -1,5 +1,4 @@
 import './App.css';
-import About from './pages/About/About';
 import Routing from './Routing/Routing';
 
 function App() {

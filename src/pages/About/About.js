@@ -4,7 +4,8 @@ import Footer from '../../components/footer/Footer'
 import Header from '../../components/header/Header'
 import "./about.css"
 import AboutImage from "../../assets/images/Rectangle2612.png"
-import {useNavigate} from "react-router-dom"
+import {useNavigate} from "react-router-dom";
+
 const About = () => {
     const navigate = useNavigate();
     const goToUploadAadhar =()=>{
@@ -27,7 +28,7 @@ const About = () => {
             <div className='aboutContent' >
                 <div className='rowAbout'>
                     <div className='imgAbout'>
-                        <img src={AboutImage} />
+                        <img alt="img" src={AboutImage} />
                     </div>
                     <div className='textAbout'>
                         <div className='headingAbout'>About  <span style={{color:"rgba(166, 29, 33, 1)"}}> OCR </span> </div>

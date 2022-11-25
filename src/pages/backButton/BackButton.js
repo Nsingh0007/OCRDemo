@@ -7,7 +7,7 @@ const BackButton = () => {
     const navigate = useNavigate();
     return (
         <div className='backBtn' onClick={() => navigate(-1)} >
-            <img src={RightArrowIcon} />
+            <img alt='Back Icon' src={RightArrowIcon} />
             <button className='btnback'>
                 Back
             </button>

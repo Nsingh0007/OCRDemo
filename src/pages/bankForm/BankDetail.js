@@ -1,4 +1,4 @@
-import React, { StrictMode, useState } from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import BackGroundImage from '../../components/backgroundImage/BackGroundImage'
 import Footer from '../../components/footer/Footer'
@@ -9,10 +9,8 @@ import "./bankDetail.css"
 import TableComponent from '../table/Table'
 const BankDetail = () => {
     var navigate = useNavigate();
-    const [editingKey, setEditingKey] = useState('');
-
     const cancel = () => {
-        setEditingKey('');
+        
     };
     var Item = {
         date: "",
@@ -37,7 +35,7 @@ const BankDetail = () => {
 
     }
 
-    const originData = Item = [];
+    const originData = [];
     for (let i = 0; i < 100; i++) {
         originData.push({
             date: `22/07/2022`,
@@ -108,13 +106,13 @@ const BankDetail = () => {
             <Header />
             <div className='rowButton'>
                 <div className='backBtn' style={{ left: "40px" }} onClick={() => navigate(-1)} >
-                    <img src={RightArrowIcon} />
+                    <img alt='Right Icon' src={RightArrowIcon} />
                     <button className='btnback'>
                         Back
                     </button>
                 </div>
                 <div className='downloadBtn'>
-                    <img src={DownloadIcom} />
+                    <img alt='Download icon' src={DownloadIcom} />
                     <button className='btnDownload'>
                         Download
                     </button>
