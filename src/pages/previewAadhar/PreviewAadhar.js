@@ -20,7 +20,7 @@ const PreviewAadhar = (file) => {
         else {
             setLabelName("Pan card");
         }
-    }, [])
+    }, [location.pathname])
     return (
         <div>
             <div className='about'>
@@ -31,7 +31,7 @@ const PreviewAadhar = (file) => {
                         <div className='frontAadhar'>
                             <div className='aadharText'>{labelName}</div>
                             <div className='aadharBox'>
-                                <img src={ labelName === "Aadhar Front" ?frontAadhar :Pan} />
+                                <img alt='Aadhar Front' src={ labelName === "Aadhar Front" ?frontAadhar :Pan} />
                                 {/* <div className='uploadText'>Upload Photos Here</div> */}
                             </div>
                         </div>
@@ -40,7 +40,7 @@ const PreviewAadhar = (file) => {
                                 <div className='frontAadhar'>
                                     <div className='aadharText'>Aadhar Back</div>
                                     <div className='aadharBox'>
-                                        <img src={backAadhar} />
+                                        <img alt='Aadhar Back' src={backAadhar} />
                                         {/* <div className='uploadText'>Upload Photos Here</div> */}
                                     </div>
                                 </div>

@@ -6,7 +6,7 @@ const Header = () => {
         <div className='header'>
             <div className='leftText' >
                 <div className='imgText'>O<span style={{ color: "rgba(4, 7, 7, 1)" }} >C</span>R</div>
-                <div className='by'>by <img className='imgLogo' src={logoImage} /> </div>
+                <div className='by'>by <img alt="img" className='imgLogo' src={logoImage} /> </div>
             </div>
             <div className='rightText'>
                 Need Help?
