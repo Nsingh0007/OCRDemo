@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import "./tableComponent.css";
 
 const TableComponent = ({ TableData, dataSub, onClick }) => {
-  const [data, setData] = useState(dataSub);
   return (
     <div>
       <table>

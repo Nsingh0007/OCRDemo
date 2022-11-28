@@ -1,6 +1,6 @@
 .img2 {
-    position: absolute;
-    width: 726.62px;
-    height: 153.9px;
-    top: 822.1px;
+  max-width: 60%;
+  margin-bottom: 50px;
+  /* height: 153.9px; */
+  /* top: 822.1px; */
 }

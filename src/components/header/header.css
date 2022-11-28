@@ -1,68 +1,64 @@
 .header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    /* padding: 0px 40px; */
-    /* gap: 54px; */
-    position: absolute;
-    width: 100%;
-    height: 80px;
-    left: 0px;
-    top: 0px;
-    background: #FFFFFF;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%;
+  height: 80px;
+  background: #ffffff;
 }
 
 .imgText {
-    width: 72px;
-    height: 30px;
-    font-family: 'Avalon';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 30px;
-    line-height: 36px;
-    letter-spacing: 0.14em;
-    /* C1 */
-    color: #A61D21;
-    /* Inside auto layout */
-    flex: none;
-    order: 0;
-    flex-grow: 0;
+  width: 72px;
+  height: 30px;
+  font-family: "Avalon";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 36px;
+  letter-spacing: 0.14em;
+  /* C1 */
+  color: #a61d21;
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
 }
 
 .by {
-    width: 77.8px;
-    height: 9.96px;
-    left: 2.18px;
-    top: 33.7px;
+  width: 77.8px;
+  height: 9.96px;
+  left: 2.18px;
+  top: 33.7px;
 }
 
 .imgLogo {
-    width: 55.32px;
-    height: 11.72px;
-    left: 14.49px;
-    top: 30px;
+  width: 55.32px;
+  height: 11.72px;
+  left: 14.49px;
+  top: 30px;
 }
 
 .rightText {
-    width: 94px;
-    height: 20px;
-    font-family: 'Avalon';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 20px;
-    /* identical to box height, or 111% */
-    text-align: center;
-    text-transform: capitalize;
-    color: #333333;
-    /* Inside auto layout */
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-    margin-right: 40px;
+  width: 94px;
+  height: 20px;
+  font-family: "Avalon";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 20px;
+  /* identical to box height, or 111% */
+  text-align: center;
+  text-transform: capitalize;
+  color: #333333;
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin-right: 40px;
 }
 
 .leftText {
-    margin-left: 40px;
+  margin-left: 40px;
 }

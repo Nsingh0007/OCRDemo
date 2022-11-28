@@ -1,26 +1,20 @@
 .uploadBtn {
-    display: flex;
-    padding: 15px 30px;
-    position: absolute;
-    /* left: 1149px; */
-    top: 668px;
-    background: #A61D21;
-    box-shadow: 0px 10px 30px #f5f5f5;
-    border-radius: 20px;
+  display: flex;
+  padding: 15px 30px;
+  background: #a61d21;
+  box-shadow: 0px 10px 30px #f5f5f5;
+  border-radius: 20px;
 }
 
 .uploadBtnMain {
-    font-family: 'Avalon';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 20px;
-    /* identical to box height, or 111% */
-    display: flex;
-    align-items: center;
-    letter-spacing: 0.25px;
-    text-transform: uppercase;
-    /* White */
-
-    color: #FFFFFF;
+  font-family: "Avalon";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.25px;
+  text-transform: uppercase;
+  color: #ffffff;
 }
