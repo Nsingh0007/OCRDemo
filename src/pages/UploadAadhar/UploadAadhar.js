@@ -2,56 +2,113 @@ import React, { useState } from "react";
 import BackGroundImage from "../../components/backgroundImage/BackGroundImage";
 import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
+import MainLoader from "../../components/Loader/Loader";
 import BackButton from "../backButton/BackButton";
 import DragDrop from "../fileDragandDrop/DragAndDrop";
 import UploadButton from "../uploadButton/UploadButton";
 import "./uploadaadhar.css";
 
 const UploadAadhar = ({ title1, title2 }) => {
+  const [loader, setLoader] = useState(false);
   const [file1, setFile1] = useState(null);
   const [Imagefile1, setImageFile1] = useState(null);
   const [file2, setFile2] = useState(null);
+  const [Imagefile2, setImageFile2] = useState(null);
   const [aadharFrontData, setAadharFrontData] = useState(null);
   const [aadharBackData, setAadharBackData] = useState(null);
   const [PanCardData, setPanCardData] = useState(null);
 
-  const convertImageToText = async () => {
+  const getAadharText = async () => {
+    setLoader(true);
+    var formData1 = new FormData();
+    formData1.append("file", Imagefile1);
+    const requestOptions1 = {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+      },
+      body: formData1,
+    };
+    fetch(
+      "https://devbankstatement.digisparsh.in:8000/upload_Aadhar_card_front/",
+      requestOptions1
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setAadharFrontData({
+          name: data.name,
+          gender: data.Gender,
+          no: data.Aadhar,
+          dob: data.DOB,
+        });
+      });
+    var formData2 = new FormData();
+    formData2.append("file", Imagefile2);
+    const requestOptions2 = {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+      },
+      body: formData2,
+    };
+    fetch(
+      "https://devbankstatement.digisparsh.in:8000/upload_Aadhar_card_back/",
+      requestOptions2
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setLoader(false);
+        setAadharBackData({
+          address: data.Aadhar,
+        });
+      })
+      .catch((e) => {
+        setLoader(false);
+        console.log("Error --> ", e);
+      });
+  };
+
+  const getAadharText2 = async () => {
+    var formData1 = new FormData();
+    formData1.append("file", Imagefile1);
+    const requestOptions1 = {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+      },
+      body: formData1,
+    };
+    fetch("https://1412-103-15-67-130.in.ngrok.io/qrAadhar", requestOptions1)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Data --> ", data);
+      });
+  };
+
+  const getPanText = async () => {
+    setLoader(true);
     var formData = new FormData();
     formData.append("file", Imagefile1);
     const requestOptions = {
       method: "POST",
       headers: {
         Accept: "application/json",
-        "X-Api-Key": "YjhxqD4T43tSlpI+C59BlQ==ni2AMkEnAl70D96H",
       },
       body: formData,
     };
-    fetch("https://0e31-122-170-176-6.in.ngrok.io/file-upload", requestOptions)
+    fetch(
+      "https://devbankstatement.digisparsh.in:8000/upload_Pan_card/",
+      requestOptions
+    )
       .then((response) => response.json())
       .then((data) => {
-        console.log("Response Data --> ", data);
-        if (!data.data.data.Name) {
-          return alert(data.data);
-        }
-        // const d = data.findIndex(
-        //   (a) => a.text === "Male" || a.text === "Female"
-        // );
-        // const dobf = data.findIndex((a) => a.text.includes("DOB"));
-        // setPanCardData({
-        //   gender: data[d].text,
-        //   no: `${data[d + 1].text} ${data[d + 2].text} ${data[d + 3].text}`,
-        //   dob:
-        //     data[dobf + 1].text === ":"
-        //       ? data[dobf + 2].text
-        //       : data[dobf + 1].text,
-        // });
         setPanCardData({
-          name: data.data.data?.Name,
-          // gender: data[d].text,
-          no: data.data.data?.PAN,
-          dob: data.data.data?.["Date of Birth"],
-          father: data.data.data?.["Father Name"],
+          name: data.name,
+          no: data.Pan,
+          dob: data.DOB,
+          father: data.Fathers_name,
         });
+        setLoader(false);
       });
   };
 
@@ -62,10 +119,10 @@ const UploadAadhar = ({ title1, title2 }) => {
     reader.onload = (r) => {
       setFile1(r.target.result);
     };
-    console.log("file", reader);
   };
 
   const onSelect = (file) => {
+    setImageFile2(file);
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = (r) => {
@@ -75,6 +132,7 @@ const UploadAadhar = ({ title1, title2 }) => {
 
   return (
     <div className="upload1">
+      {loader && <MainLoader />}
       <Header />
       <BackButton />
       <div className="uploadAadharContent">
@@ -161,7 +219,8 @@ const UploadAadhar = ({ title1, title2 }) => {
                 <div className="ocrDetail">
                   <div className="nameDetail">
                     {" "}
-                    Name : <span className="nameValue">{""}</span>
+                    Name :{" "}
+                    <span className="nameValue">{aadharFrontData?.name}</span>
                   </div>
                   <div className="nameDetail">
                     {" "}
@@ -173,19 +232,12 @@ const UploadAadhar = ({ title1, title2 }) => {
                     Gender :{" "}
                     <span className="nameValue">{aadharFrontData?.gender}</span>
                   </div>
-                  {title1 === "Pan Card" ? (
-                    <div className="nameDetail">
-                      {" "}
-                      Aadhar No. :{" "}
-                      <span className="nameValue">{aadharFrontData?.no}</span>
-                    </div>
-                  ) : (
-                    <div className="nameDetail">
-                      {" "}
-                      Pan No. :{" "}
-                      <span className="nameValue">{aadharFrontData?.no}</span>
-                    </div>
-                  )}
+
+                  <div className="nameDetail">
+                    {" "}
+                    Aadhar No. :{" "}
+                    <span className="nameValue">{aadharFrontData?.no}</span>
+                  </div>
                 </div>
               </div>
             )}
@@ -227,7 +279,7 @@ const UploadAadhar = ({ title1, title2 }) => {
                 {file2 ? (
                   <UploadButton
                     onClick={() => {
-                      convertImageToText();
+                      getAadharText();
                     }}
                   />
                 ) : null}
@@ -235,7 +287,7 @@ const UploadAadhar = ({ title1, title2 }) => {
             ) : (
               <UploadButton
                 onClick={() => {
-                  convertImageToText();
+                  getPanText();
                 }}
               />
             )}
