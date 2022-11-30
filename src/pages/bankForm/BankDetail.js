@@ -12,7 +12,7 @@ const BankDetail = () => {
   const cancel = () => {};
 
   const balanceData = [];
-  for (let j = 0; j < 100; j++) {
+  for (let j = 0; j < 68; j++) {
     balanceData.push({
       ClosingBalance: 6814.1 + `${j}`,
       AverageBalance: 13058.0 + `${j}`,
@@ -87,11 +87,11 @@ const BankDetail = () => {
     };
   });
   return (
-    <div className="about">
+    <div className="Details">
       <Header />
       <div className="rowButton">
         <div
-          className="backBtn"
+          className="backBtnn"
           style={{ left: "40px" }}
           onClick={() => navigate(-1)}
         >
