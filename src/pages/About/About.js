@@ -16,13 +16,13 @@ const About = () => {
       <Header />
       <div className="buttonBox">
         <div className="btn1">
-          <button onClick={() => goToUploadAadhar()}>Upload Aadhar</button>
+          <button style={{fontSize: 18 }} onClick={() => goToUploadAadhar()}>Upload Aadhar</button>
         </div>
         <div className="btn1">
-          <button onClick={() => navigate("/pan")}>Upload Pan</button>
+          <button style={{fontSize: 18 }} onClick={() => navigate("/pan")}>Upload Pan</button>
         </div>
         <div className="btn2">
-          <button onClick={() => navigate("/bankform")}>
+          <button style={{fontSize: 18 }} onClick={() => navigate("/bankform")}>
             Upload Bank Statement
           </button>
         </div>
@@ -33,7 +33,7 @@ const About = () => {
             <img alt="img" src={AboutImage} />
           </div>
           <div className="textAbout">
-            <div className="headingAbout">
+            <div className="headingAbout" style={{fontWeight: 'bold'}}>
               About <span style={{ color: "rgba(166, 29, 33, 1)" }}> OCR </span>{" "}
             </div>
             <div className="aboutParagraph">

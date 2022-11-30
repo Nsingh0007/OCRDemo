@@ -40,6 +40,28 @@ const BankDetail = () => {
             setAverageData(avg);
         }
     }, [page,PerPage])
+ 
+
+
+  for (let j = 0; j < 68; j++) {
+    balanceData.push({
+      ClosingBalance: 6814.1 + `${j}`,
+      AverageBalance: 13058.0 + `${j}`,
+    });
+  }
+
+
+  for (let i = 0; i < 100; i++) {
+    originData.push({
+      date: `22/07/2022`,
+      narration:
+        "UPI-rakesh babulal ganan-8424847649@ Y BL-SBIN0012703-130624266290-payment from phone",
+      Chq_No: 13062422 + `${i}`,
+      debit: 7000.0,
+      credit: "Credit",
+      balance: 8493.0 + `${i}`,
+    });
+  }
 
     const getPaginatedData = (field) => {
         var splicedArray = [];
@@ -113,12 +135,12 @@ const BankDetail = () => {
         setPage(value);
     };
     return (
-        <div className="about">
+        <div className="Details">
             <Header />
             <div className="rowButton">
                 <div
-                    className="backBtn"
-                    style={{ marginLeft: "6%" }}
+                    className="backBtnn"
+                    style={{ left: "40px" }}
                     onClick={() => navigate(-1)}
                 >
                     <img alt="Right Icon" src={RightArrowIcon} />
@@ -191,7 +213,6 @@ const BankDetail = () => {
                                                                 width: "142.5px",
                                                                 background: "#E7E7E7",
                                                                 border: "1px solid #E7E7E7",
-                                                                height: "48px"
                                                             }}
                                                         >
                                                             {" "}
@@ -215,7 +236,6 @@ const BankDetail = () => {
                                                                 width: "142.5px",
                                                                 background: "#E7E7E7",
                                                                 border: "1px solid #E7E7E7",
-                                                                height: "48px"
                                                             }}
                                                         >
                                                             {" "}

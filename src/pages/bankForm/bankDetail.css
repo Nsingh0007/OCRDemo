@@ -1,9 +1,25 @@
 .rowButton {
     display: flex;
-    flex-direction: row;
+    width: 90%;
+    align-self: center;
     justify-content: space-between;
-    width: 100%;
+    flex-wrap: wrap;
 }
+.Details {
+    flex: 1;
+    display: flex;
+    background: rgba(248, 248, 248, 1);
+    justify-content: center;
+    flex-direction: column;
+  }
+.backBtnn {
+    display: flex;
+    padding: 10px 15px;
+    width: 89px;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+      #333333;
+    border-radius: 15px;
+  }
 
 
 .downloadBtn {
@@ -12,12 +28,8 @@
     align-items: center;
     padding: 10px 15px;
     gap: 4px;
-    /* position: absolute; */
-    /* right: 40px; */
-    top: 110px;
     background: #A61D21;
     border-radius: 15px;
-    margin-right: 6%;
 }
 
 .btnDownload {
@@ -32,7 +44,8 @@
 .transaction {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-self: center !important;
+    /* align-items: flex-start; */
     padding: 20px;
     gap: 30px;
     /* position: absolute; */
