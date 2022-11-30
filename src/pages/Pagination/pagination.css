@@ -1,0 +1,12 @@
+.css-10w330c-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
+    background-color: #A61D21 !important;
+    color: white !important;
+}
+
+.css-10w330c-MuiButtonBase-root-MuiPaginationItem-root {
+    font-family: 'Avalon' !important;
+    font-weight: 400 !important;
+    font-size: 18px !important;
+    line-height: 32px !important;
+    color: #A61D21 !important;
+}

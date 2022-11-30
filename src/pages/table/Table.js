@@ -8,7 +8,6 @@ const TableComponent = ({ TableData, dataSub, onClick }) => {
         <thead>
           <tr style={{ padding: "0px", gap: "2px" }}>
             {TableData.map((Item) => {
-              console.log("Item", Item);
               var columnWidth = Item.width;
               return (
                 <th
@@ -27,7 +26,6 @@ const TableComponent = ({ TableData, dataSub, onClick }) => {
         </thead>
         <tbody>
           {dataSub.map((item) => {
-            console.log("item", item);
             return (
               <tr style={{ padding: "0px", gap: "2px" }}>
                 <td className="tableRowValue">
