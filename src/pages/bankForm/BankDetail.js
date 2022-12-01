@@ -101,16 +101,16 @@ const BankDetail = () => {
             KPI
           </div>
           <div className="kpiRow">
-            {d.map((item) => {
+            {d?.map((item) => {
               return (
                 <div className="kpiCard">
                   <p className="kpiLabel">{item.value}</p>
-                  {typeof location?.state?.KPI?.[`${item.key}`] === "string" ? (
+                  {location?.state !== null && typeof location?.state?.KPI?.[`${item.key}`] === "string" ? (
                     <p className="kpiValue">
                       {location?.state?.KPI?.[`${item.key}`]}
                     </p>
                   ) : (
-                    <p className="kpiValue">
+                    location?.state && <p className="kpiValue">
                       {Object.keys(location?.state?.KPI?.[`${item.key}`])[0] +
                         " --> " +
                         Object.values(location?.state?.KPI?.[`${item.key}`])[0]}
