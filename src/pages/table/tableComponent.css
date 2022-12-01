@@ -1,34 +1,42 @@
+.TableMainDiv {
+  display: flex;
+  flex: 1 1 100%;
+  width: 100%;
+}
+.tableCSS {
+  width: 100%;
+  border: 1px solid #E7E7E7;
+}
 .tableHead {
-    font-family: 'Avalon';
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 17px;
-    box-sizing: border-box;
-    padding: 10px;
+  font-family: "Avalon";
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  box-sizing: border-box;
+  border: 1px solid #E7E7E7;
+  padding: 10px 0px;
+}
+
+.tableRow {
+  text-align: center;
+}
+
+.HeadRow {
+  text-align: center;
+  background-color: #E7E7E7;
 }
 
 .tableRowValue {
-    /* display: flex;
-    flex-direction: row;
-    align-items: flex-start; */
-    padding: 10px;
-    gap: 10px;
-    /* White */
-    background: #FFFFFF;
-    /* Border1 */
-    border: 1px solid #E7E7E7;
-    box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #E7E7E7;
+  padding: 20px 5px;
 }
 
 .rowItem {
-    font-family: 'Avalon';
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 14px;
-    display: flex;
-    align-items: center;
-
-    /* B4 */
-
-    color: #616576;
+  font-family: "Avalon";
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  align-items: center;
 }
