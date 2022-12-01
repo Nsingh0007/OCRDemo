@@ -59,7 +59,7 @@ const UploadAadhar = ({ title1, title2 }) => {
       .then((data) => {
         setLoader(false);
         setAadharBackData({
-          address: data.Aadhar,
+          no: data.Aadhar === null ? "" : data.Aadhar,
         });
       })
       .catch((e) => {
@@ -129,6 +129,9 @@ const UploadAadhar = ({ title1, title2 }) => {
       setFile2(r.target.result);
     };
   };
+
+  console.log("Front --> ", aadharFrontData);
+  console.log("Back --> ", aadharBackData);
 
   return (
     <div className="upload1">
@@ -216,32 +219,41 @@ const UploadAadhar = ({ title1, title2 }) => {
                 <div className="ocrHeader">
                   <div className="ocrHeaderText">{title1 + " Detail"}</div>
                 </div>
-                <div className="ocrDetail">
-                  <div className="nameDetail">
-                    {" "}
-                    Name :{" "}
-                    <span className="nameValue">{aadharFrontData?.name}</span>
-                  </div>
-                  <div className="nameDetail">
-                    {" "}
-                    DOB :{" "}
-                    <span className="nameValue">{aadharFrontData?.dob}</span>
-                  </div>
-                  <div className="nameDetail">
-                    {" "}
-                    Gender :{" "}
-                    <span className="nameValue">{aadharFrontData?.gender}</span>
-                  </div>
+                {aadharBackData?.no !== null && aadharFrontData?.no === aadharBackData?.no ? (
+                  <div className="ocrDetail">
+                    <div className="nameDetail">
+                      {" "}
+                      Name :{" "}
+                      <span className="nameValue">{aadharFrontData?.name}</span>
+                    </div>
+                    <div className="nameDetail">
+                      {" "}
+                      DOB :{" "}
+                      <span className="nameValue">{aadharFrontData?.dob}</span>
+                    </div>
+                    <div className="nameDetail">
+                      {" "}
+                      Gender :{" "}
+                      <span className="nameValue">
+                        {aadharFrontData?.gender}
+                      </span>
+                    </div>
 
-                  <div className="nameDetail">
-                    {" "}
-                    Aadhar No. :{" "}
-                    <span className="nameValue">{aadharFrontData?.no}</span>
+                    <div className="nameDetail">
+                      {" "}
+                      Aadhar No. :{" "}
+                      <span className="nameValue">{aadharFrontData?.no}</span>
+                    </div>
                   </div>
-                </div>
+                ) : (
+                  <div className="ocrDetail">
+                    <div className="nameDetail" style={{color: "#a61d21", fontSize: 20}}>{"Aadhar Card not Validated"}</div>
+                    <div className="nameDetail" style={{color: "#a61d21", fontSize: 14}}>{"Note: Please Upload Correct Image"}</div>
+                  </div>
+                )}
               </div>
             )}
-            {aadharBackData && (
+            {aadharBackData && aadharBackData?.no !== null && aadharFrontData?.no === aadharBackData?.no  && (
               <div className="aadharCardDetail">
                 <div className="ocrHeader">
                   <div className="ocrHeaderText">{title2 + " Detail"}</div>
@@ -249,11 +261,9 @@ const UploadAadhar = ({ title1, title2 }) => {
                 <div className="ocrDetail">
                   <div className="nameDetail">
                     {" "}
-                    Address :{" "}
+                    Aadhar :{" "}
                     <span className="nameValue">
-                      {" "}
-                      60, rani bagh main, khandwa road, limbodi, indore, madhya
-                      pradesh - 452020{" "}
+                      {aadharBackData?.no}
                     </span>
                   </div>
                 </div>
