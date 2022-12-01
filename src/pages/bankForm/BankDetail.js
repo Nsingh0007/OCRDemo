@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import BackGroundImage from "../../components/backgroundImage/BackGroundImage";
 import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
@@ -9,65 +9,64 @@ import "./bankDetail.css";
 import TableComponent from "../table/Table";
 const BankDetail = () => {
   var navigate = useNavigate();
+  const location = useLocation();
+  // const { tableData } = location?.state;
+
   const cancel = () => {};
 
-  const balanceData = [];
-  for (let j = 0; j < 68; j++) {
-    balanceData.push({
-      ClosingBalance: 6814.1 + `${j}`,
-      AverageBalance: 13058.0 + `${j}`,
-    });
-  }
-
-  const originData = [];
-  for (let i = 0; i < 100; i++) {
-    originData.push({
-      date: `22/07/2022`,
-      narration:
-        "UPI-rakesh babulal ganan-8424847649@ Y BL-SBIN0012703-130624266290-payment from phone",
-      Chq_No: 13062422 + `${i}`,
-      debit: 7000.0,
-      credit: "Credit",
-      balance: 8493.0 + `${i}`,
-    });
-  }
+  const d = [
+    { key: "Ac holder name", value: "A/c Holder Name" },
+    { key: "bank name", value: "Bank Name" },
+    { key: "opening_balance", value: "Opening Balance" },
+    { key: "closing_balance", value: "Closing Balance" },
+    { key: "average_balance", value: "Average Balance" },
+    { key: "credit_sum", value: "Credit Sum" },
+    { key: "debit_sum", value: "Debit Sum" },
+    { key: "debit_to_credit_ratio", value: "Debit to Credit Ratio" },
+    { key: "eod", value: "EOD" },
+    { key: "very_high_credit", value: "Very High Credit" },
+    { key: "very_high_debit", value: "Very High Debit" },
+    { key: "account number", value: "A/C Number" },
+    { key: "start end date", value: "Start End Date" },
+    { key: "post_salary_payout", value: "Post Salary Payout" },
+    { key: "three_month_debit_average", value: "3 month Debit Avg." },
+    { key: "three_month_credit_average", value: "3 month Credit Avg." },
+    { key: "three_month_debit_to_credit_ratio", value: "3 month Debit to Credit Ratio" },
+    { key: "three_month_avg_balance", value: "3 month Avg. Balance" },
+    { key: "identical_debit_credit", value: "Identical Debit Credit" },
+    { key: "highest_balance", value: "Highest Balance" },
+    { key: "lowest_balance", value: "Lowest Balance" },
+    { key: "heighest_debits", value: "Highest Debit" },
+    { key: "heighest_credits", value: "Highest Credit" },
+    { key: "highest_credit_balance", value: "Highest Credit Balance" },
+    { key: "highest_debit_balance", value: "Highest Debit Balance" },
+    { key: "amount_tallying_inconsistancy", value: "Amount tallying Inconsistency" },
+  ];
 
   const columns = [
     {
       title: "Date",
       dataIndex: "Date",
-      width: "129.2px",
-      editable: true,
     },
     {
       title: "Narration",
       dataIndex: "Narration",
-      width: "327px",
-      editable: true,
     },
     {
       title: "Chq./Ref. No.",
       dataIndex: "Chq./Ref. No.",
-      width: "129.2px",
-      editable: true,
     },
     {
       title: "Debit",
       dataIndex: "Debit",
-      width: "129.2px",
-      editable: true,
     },
     {
       title: "Credit",
       dataIndex: "Credit",
-      width: "129.2px",
-      editable: true,
     },
     {
       title: "Balance",
       dataIndex: "Balance",
-      width: "129.2px",
-      editable: true,
     },
   ];
 
@@ -77,13 +76,6 @@ const BankDetail = () => {
     }
     return {
       ...col,
-      // onCell: (record: Item) => ({
-      //   record,
-      //   inputType: col.dataIndex === 'age' ? 'number' : 'text',
-      //   dataIndex: col.dataIndex,
-      //   title: col.title,
-      //   editing: isEditing(record),
-      // }),
     };
   });
   return (
@@ -104,110 +96,58 @@ const BankDetail = () => {
         </div>
       </div>
       <div className="transaction">
+        <div>
+          <div className="headingName" style={{ width: "80%" }}>
+            KPI
+          </div>
+          <div className="kpiRow">
+            {d.map((item) => {
+              return (
+                <div className="kpiCard">
+                  <p className="kpiLabel">{item.value}</p>
+                  {typeof location?.state?.KPI?.[`${item.key}`] === "string" ? (
+                    <p className="kpiValue">
+                      {location?.state?.KPI?.[`${item.key}`]}
+                    </p>
+                  ) : (
+                    <p className="kpiValue">
+                      {Object.keys(location?.state?.KPI?.[`${item.key}`])[0] +
+                        " --> " +
+                        Object.values(location?.state?.KPI?.[`${item.key}`])[0]}
+                    </p>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
         <div className="headerRow">
           <div className="headingName" style={{ width: "80%" }}>
             Transaction
-          </div>
-          <div className="headingName" style={{ width: "23%" }}>
-            KPI
           </div>
         </div>
         <div className="pagination">
           <div className="paginationRow">
             <div className="show">show</div>
             <select className="inputSelect">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
+              <option value="1">10</option>
+              <option value="2">20</option>
+              <option value="3">30</option>
             </select>
             <div className="show">entries</div>
           </div>
           <div className="paginationRow"></div>
         </div>
-        <div className="tableRow">
-          <div className="tableBox">
-            <TableComponent
-              TableData={mergedColumns}
-              dataSub={originData}
-              onClick={cancel}
-            />
-          </div>
-          <div className="tableBox">
-            <table>
-              <thead>
-                <tr style={{ padding: "0px", gap: "2px" }}>
-                  <th
-                    className="tableHead"
-                    style={{
-                      width: "142.5px",
-                      background: "#E7E7E7",
-                      border: "1px solid #E7E7E7",
-                    }}
-                  >
-                    Opening Balance
-                  </th>
-                  <th className="tableRowValue" style={{ width: "142.5px" }}>
-                    {" "}
-                    <div className="rowItem">15493.00</div>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {balanceData.map((item) => {
-                  console.log("item", item);
-                  return (
-                    <>
-                      {item.AverageBalance && (
-                        <>
-                          <tr style={{ padding: "0px", gap: "2px" }}>
-                            <td
-                              className="tableHead"
-                              style={{
-                                width: "142.5px",
-                                background: "#E7E7E7",
-                                border: "1px solid #E7E7E7",
-                              }}
-                            >
-                              {" "}
-                              <div className="rowItem">Average Balance</div>
-                            </td>
-                            <td className="tableRowValue">
-                              <div className="rowItem">
-                                {item.AverageBalance}
-                              </div>
-                            </td>
-                          </tr>
-                        </>
-                      )}
-
-                      {item.ClosingBalance && (
-                        <>
-                          <tr style={{ padding: "0px", gap: "2px" }}>
-                            <td
-                              className="tableHead"
-                              style={{
-                                width: "142.5px",
-                                background: "#E7E7E7",
-                                border: "1px solid #E7E7E7",
-                              }}
-                            >
-                              {" "}
-                              <div className="rowItem">Closing Balance</div>
-                            </td>
-                            <td className="tableRowValue">
-                              <div className="rowItem">
-                                {item.ClosingBalance}
-                              </div>
-                            </td>
-                          </tr>
-                        </>
-                      )}
-                    </>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
+        <div className="tableBox">
+          <TableComponent
+            TableData={mergedColumns}
+            dataSub={
+              location?.state?.tableData === null
+                ? []
+                : location?.state?.tableData
+            }
+            onClick={cancel}
+          />
         </div>
       </div>
 
