@@ -14,6 +14,17 @@ const BankDetail = () => {
 
   const cancel = () => {};
 
+  const exportData = () => {
+    const jsonString = `data:text/json;chatset=utf-8,${encodeURIComponent(
+      JSON.stringify(location?.state)
+    )}`;
+    const link = document.createElement("a");
+    link.href = jsonString;
+    link.download = "BankStatement.json";
+
+    link.click();
+  };
+
   const d = [
     { key: "Ac holder name", value: "A/c Holder Name" },
     { key: "bank name", value: "Bank Name" },
@@ -31,7 +42,10 @@ const BankDetail = () => {
     { key: "post_salary_payout", value: "Post Salary Payout" },
     { key: "three_month_debit_average", value: "3 month Debit Avg." },
     { key: "three_month_credit_average", value: "3 month Credit Avg." },
-    { key: "three_month_debit_to_credit_ratio", value: "3 month Debit to Credit Ratio" },
+    {
+      key: "three_month_debit_to_credit_ratio",
+      value: "3 month Debit to Credit Ratio",
+    },
     { key: "three_month_avg_balance", value: "3 month Avg. Balance" },
     { key: "identical_debit_credit", value: "Identical Debit Credit" },
     { key: "highest_balance", value: "Highest Balance" },
@@ -40,7 +54,10 @@ const BankDetail = () => {
     { key: "heighest_credits", value: "Highest Credit" },
     { key: "highest_credit_balance", value: "Highest Credit Balance" },
     { key: "highest_debit_balance", value: "Highest Debit Balance" },
-    { key: "amount_tallying_inconsistancy", value: "Amount tallying Inconsistency" },
+    {
+      key: "amount_tallying_inconsistancy",
+      value: "Amount tallying Inconsistency",
+    },
   ];
 
   const columns = [
@@ -92,7 +109,9 @@ const BankDetail = () => {
         </div>
         <div className="downloadBtn">
           <img alt="Download icon" src={DownloadIcom} />
-          <button className="btnDownload">Download</button>
+          <button className="btnDownload" onClick={()=>exportData()}>
+            Download
+          </button>
         </div>
       </div>
       <div className="transaction">
@@ -105,16 +124,21 @@ const BankDetail = () => {
               return (
                 <div className="kpiCard">
                   <p className="kpiLabel">{item.value}</p>
-                  {location?.state !== null && typeof location?.state?.KPI?.[`${item.key}`] === "string" ? (
+                  {location?.state !== null &&
+                  typeof location?.state?.KPI?.[`${item.key}`] === "string" ? (
                     <p className="kpiValue">
                       {location?.state?.KPI?.[`${item.key}`]}
                     </p>
                   ) : (
-                    location?.state && <p className="kpiValue">
-                      {Object.keys(location?.state?.KPI?.[`${item.key}`])[0] +
-                        " --> " +
-                        Object.values(location?.state?.KPI?.[`${item.key}`])[0]}
-                    </p>
+                    location?.state && (
+                      <p className="kpiValue">
+                        {Object.keys(location?.state?.KPI?.[`${item.key}`])[0] +
+                          " --> " +
+                          Object.values(
+                            location?.state?.KPI?.[`${item.key}`]
+                          )[0]}
+                      </p>
+                    )
                   )}
                 </div>
               );

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import BackGroundImage from "../../components/backgroundImage/BackGroundImage";
 import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
@@ -6,9 +7,12 @@ import MainLoader from "../../components/Loader/Loader";
 import BackButton from "../backButton/BackButton";
 import DragDrop from "../fileDragandDrop/DragAndDrop";
 import UploadButton from "../uploadButton/UploadButton";
+import RightArrowIcon from "../../assets/images/arrow-right.png";
+import DownloadIcom from "../../assets/images/arrow-down.png";
 import "./uploadaadhar.css";
 
 const UploadAadhar = ({ title1, title2 }) => {
+  var navigate = useNavigate();
   const [loader, setLoader] = useState(false);
   const [file1, setFile1] = useState(null);
   const [Imagefile1, setImageFile1] = useState(null);
@@ -36,11 +40,12 @@ const UploadAadhar = ({ title1, title2 }) => {
       .then((response) => response.json())
       .then((data) => {
         setAadharFrontData({
-          name: data.name,
-          gender: data.Gender,
-          no: data.Aadhar,
-          dob: data.DOB,
+          name: data?.name,
+          gender: data?.Gender,
+          no: data?.Aadhar,
+          dob: data?.DOB,
         });
+        setLoader(false);
       });
     var formData2 = new FormData();
     formData2.append("file", Imagefile2);
@@ -57,7 +62,6 @@ const UploadAadhar = ({ title1, title2 }) => {
     )
       .then((response) => response.json())
       .then((data) => {
-        setLoader(false);
         setAadharBackData({
           no: data.Aadhar === null ? "" : data.Aadhar,
         });
@@ -68,22 +72,22 @@ const UploadAadhar = ({ title1, title2 }) => {
       });
   };
 
-  const getAadharText2 = async () => {
-    var formData1 = new FormData();
-    formData1.append("file", Imagefile1);
-    const requestOptions1 = {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-      },
-      body: formData1,
-    };
-    fetch("https://1412-103-15-67-130.in.ngrok.io/qrAadhar", requestOptions1)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Data --> ", data);
-      });
-  };
+  // const getAadharText2 = async () => {
+  //   var formData1 = new FormData();
+  //   formData1.append("file", Imagefile1);
+  //   const requestOptions1 = {
+  //     method: "POST",
+  //     headers: {
+  //       Accept: "application/json",
+  //     },
+  //     body: formData1,
+  //   };
+  //   fetch("https://1412-103-15-67-130.in.ngrok.io/qrAadhar", requestOptions1)
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       console.log("Data --> ", data);
+  //     });
+  // };
 
   const getPanText = async () => {
     setLoader(true);
@@ -130,14 +134,49 @@ const UploadAadhar = ({ title1, title2 }) => {
     };
   };
 
-  console.log("Front --> ", aadharFrontData);
-  console.log("Back --> ", aadharBackData);
+  const exportData = () => {
+    let data;
+    let fileName;
+    if (aadharFrontData) {
+      data = aadharFrontData;
+      fileName = "Aadhar";
+    } else {
+      data = PanCardData;
+      fileName = "PanCard";
+    }
+    const jsonString = `data:text/json;chatset=utf-8,${encodeURIComponent(
+      JSON.stringify(data)
+    )}`;
+    const link = document.createElement("a");
+    link.href = jsonString;
+    link.download = `${fileName}.json`;
+
+    link.click();
+  };
 
   return (
     <div className="upload1">
       {loader && <MainLoader />}
       <Header />
-      <BackButton />
+      <div className="rowButton">
+        <div
+          className="backBtnn"
+          style={{ left: "40px" }}
+          onClick={() => navigate(-1)}
+        >
+          <img alt="Right Icon" src={RightArrowIcon} />
+          <button className="btnback">Back</button>
+        </div>
+        {((aadharFrontData && aadharFrontData?.no === aadharBackData?.no) ||
+          PanCardData) && (
+          <div className="downloadBtn">
+            <img alt="Download icon" src={DownloadIcom} />
+            <button className="btnDownload" onClick={()=>exportData()}>
+              Download
+            </button>
+          </div>
+        )}
+      </div>
       <div className="uploadAadharContent">
         <div className="rowaadhar1">
           {title1 && (
@@ -219,7 +258,8 @@ const UploadAadhar = ({ title1, title2 }) => {
                 <div className="ocrHeader">
                   <div className="ocrHeaderText">{title1 + " Detail"}</div>
                 </div>
-                {aadharBackData?.no !== null && aadharFrontData?.no === aadharBackData?.no ? (
+                {aadharBackData?.no !== null &&
+                aadharFrontData?.no === aadharBackData?.no ? (
                   <div className="ocrDetail">
                     <div className="nameDetail">
                       {" "}
@@ -247,28 +287,38 @@ const UploadAadhar = ({ title1, title2 }) => {
                   </div>
                 ) : (
                   <div className="ocrDetail">
-                    <div className="nameDetail" style={{color: "#a61d21", fontSize: 20}}>{"Aadhar Card not Validated"}</div>
-                    <div className="nameDetail" style={{color: "#a61d21", fontSize: 14}}>{"Note: Please Upload Correct Image"}</div>
+                    <div
+                      className="nameDetail"
+                      style={{ color: "#a61d21", fontSize: 20 }}
+                    >
+                      {"Aadhar Card not Validated"}
+                    </div>
+                    <div
+                      className="nameDetail"
+                      style={{ color: "#a61d21", fontSize: 14 }}
+                    >
+                      {"Note: Please Upload Correct Image"}
+                    </div>
                   </div>
                 )}
               </div>
             )}
-            {aadharBackData && aadharBackData?.no !== null && aadharFrontData?.no === aadharBackData?.no  && (
-              <div className="aadharCardDetail">
-                <div className="ocrHeader">
-                  <div className="ocrHeaderText">{title2 + " Detail"}</div>
-                </div>
-                <div className="ocrDetail">
-                  <div className="nameDetail">
-                    {" "}
-                    Aadhar :{" "}
-                    <span className="nameValue">
-                      {aadharBackData?.no}
-                    </span>
+            {aadharBackData &&
+              aadharBackData?.no !== null &&
+              aadharFrontData?.no === aadharBackData?.no && (
+                <div className="aadharCardDetail">
+                  <div className="ocrHeader">
+                    <div className="ocrHeaderText">{title2 + " Detail"}</div>
+                  </div>
+                  <div className="ocrDetail">
+                    <div className="nameDetail">
+                      {" "}
+                      Aadhar :{" "}
+                      <span className="nameValue">{aadharBackData?.no}</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
+              )}
           </div>
         )}
       </div>
