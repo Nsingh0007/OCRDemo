@@ -28,7 +28,7 @@
   align-items: center;
   padding: 10px 15px;
   gap: 4px;
-  background: #a61d21;
+  background: #004C4C;
   border-radius: 15px;
 }
 
@@ -138,7 +138,7 @@
   font-weight: 700;
   font-size: 15px;
   line-height: 17px;
-  /* color: #a61d21; */
+  /* color: #004C4C; */
 }
 
 .kpiValue {
@@ -154,7 +154,7 @@
   padding: 15px 10px;
   height: 50px;
   margin: 10px;
-  border: 1px solid #a61d21;
+  border: 1px solid #004C4C;
   display: flex;
   flex-direction: column;
   justify-content: center;

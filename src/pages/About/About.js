@@ -34,7 +34,7 @@ const About = () => {
           </div>
           <div className="textAbout">
             <div className="headingAbout" style={{fontWeight: 'bold'}}>
-              About <span style={{ color: "rgba(166, 29, 33, 1)" }}> OCR </span>{" "}
+              About <span style={{ color: "#004C4C" }}> OCR </span>{" "}
             </div>
             <div className="aboutParagraph">
               {" "}

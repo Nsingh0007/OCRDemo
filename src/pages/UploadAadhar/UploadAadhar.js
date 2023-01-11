@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import DownloadIcom from "../../assets/images/arrow-down.png";
+import RightArrowIcon from "../../assets/images/arrow-right.png";
 import BackGroundImage from "../../components/backgroundImage/BackGroundImage";
 import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
 import MainLoader from "../../components/Loader/Loader";
-import BackButton from "../backButton/BackButton";
 import DragDrop from "../fileDragandDrop/DragAndDrop";
 import UploadButton from "../uploadButton/UploadButton";
-import RightArrowIcon from "../../assets/images/arrow-right.png";
-import DownloadIcom from "../../assets/images/arrow-down.png";
 import "./uploadaadhar.css";
 
 const UploadAadhar = ({ title1, title2 }) => {
@@ -289,13 +288,13 @@ const UploadAadhar = ({ title1, title2 }) => {
                   <div className="ocrDetail">
                     <div
                       className="nameDetail"
-                      style={{ color: "#a61d21", fontSize: 20 }}
+                      style={{ color: "#004C4C", fontSize: 20 }}
                     >
                       {"Aadhar Card not Validated"}
                     </div>
                     <div
                       className="nameDetail"
-                      style={{ color: "#a61d21", fontSize: 14 }}
+                      style={{ color: "#004C4C", fontSize: 14 }}
                     >
                       {"Note: Please Upload Correct Image"}
                     </div>
