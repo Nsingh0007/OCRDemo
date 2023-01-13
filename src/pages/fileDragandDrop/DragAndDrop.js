@@ -1,7 +1,7 @@
 import React from "react";
 import { FileUploader } from "react-drag-drop-files";
 import uploadIcon from "../../assets/images/upload.png";
-const fileTypes = ["JPG", "PNG", "JPEG"];
+const fileTypes = ["JPG", "PNG", "JPEG", "PDF"];
 
 function DragDrop({ onUpload }) {
   return (

@@ -24,3 +24,6 @@ code {
   src: local("Avalon_Regular.ttf"),
     url("./assets/font/Avalon_Regular.ttf") format("truetype");
 }
+.react-pdf__Page__textContent.textLayer{
+  display: none
+}

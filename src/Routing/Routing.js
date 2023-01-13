@@ -20,6 +20,7 @@ const Routing = () => {
           element={<UploadAadhar title1="Aadhar Front" title2="Aadhar Back" />}
         />
         <Route path="/pan" element={<UploadAadhar title1="Pan Card" />} />
+        <Route path="/resume" element={<UploadAadhar title1="Resume Parser" />} />
         <Route path="/bankform" element={<BankForm />} />
         <Route path="/bankdetail" element={<BankDetail />} />
         <Route path="*" element={<Navigate to={<About />} />} />

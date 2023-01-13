@@ -26,6 +26,11 @@ const About = () => {
             Upload Bank Statement
           </button>
         </div>
+        <div className="btn1">
+          <button style={{fontSize: 18 }} onClick={() => navigate("/resume")}>
+             Resume Parser
+          </button>
+        </div>
       </div>
       <div className="aboutContent">
         {/* <div className="rowAbout"> */}
