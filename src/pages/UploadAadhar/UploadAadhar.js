@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import DownloadIcom from "../../assets/images/arrow-down.png";
 import RightArrowIcon from "../../assets/images/arrow-right.png";
@@ -9,7 +9,7 @@ import MainLoader from "../../components/Loader/Loader";
 import DragDrop from "../fileDragandDrop/DragAndDrop";
 import UploadButton from "../uploadButton/UploadButton";
 import "./uploadaadhar.css";
-import { Document, Page, pdfjs } from 'react-pdf';
+
 
 const UploadAadhar = ({ title1, title2 }) => {
   var navigate = useNavigate();
@@ -21,10 +21,7 @@ const UploadAadhar = ({ title1, title2 }) => {
   const [aadharFrontData, setAadharFrontData] = useState(null);
   const [aadharBackData, setAadharBackData] = useState(null);
   const [PanCardData, setPanCardData] = useState(null);
-  const [pageNumber, setPageNumber] = useState(1);
 
-  pdfjs.GlobalWorkerOptions.workerSrc = 
-    `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
   const getAadharText = async () => {
     setLoader(true);
@@ -124,11 +121,10 @@ const UploadAadhar = ({ title1, title2 }) => {
     setImageFile1(file);
     const reader = new FileReader();
     reader.readAsDataURL(file);
-  
+
     reader.onload = (r) => {
-      console.log("text",r.target.result);
-      // debugger;
-      setFile1(r.target.result);
+      console.log("text", r.target.result);
+        setFile1(r.target.result);
     };
   };
 
@@ -160,10 +156,7 @@ const UploadAadhar = ({ title1, title2 }) => {
 
     link.click();
   };
-  const  onDocumentLoadSuccess =({ numPages }) => {
-    console.log("Pages --> ",numPages);
-    setPageNumber(1);
-  }
+  
   return (
     <div className="upload1">
       {loader && <MainLoader />}
@@ -194,21 +187,10 @@ const UploadAadhar = ({ title1, title2 }) => {
               <div className="aadharText">{title1}</div>
               {file1 ? (
                 <>
-                  {title1 === "Resume Parser" ? (<div style={{ width: "233.18px", height: "150px" }}>
-                    <Document
-                      file={file1}
-                      onLoadSuccess={onDocumentLoadSuccess}
-                      renderMode="canvas"
-                      className="pdfHg"
-                    >
-                      <Page pageNumber={1} pageIndex={0} renderMode="canvas" />
-                    </Document>
-                  </div>) : (<>
-                    <img height={300} alt="File 1" src={file1} />
-                  </>)}
+                  <img height={300} alt="File 1" src={file1} />
                 </>
               ) : (
-                <div className="aadharBox" style={{ width: title1 === "Resume Parser" ? "50%" : " 100%" }}>
+                <div className="aadharBox" >
                   <DragDrop onUpload={(e) => handleChange(e)} />
                 </div>
               )}
@@ -271,46 +253,10 @@ const UploadAadhar = ({ title1, title2 }) => {
               </div>
             </div>
           )}
-          {/* {title1 === "Resume Parser" && (
-            <div className="aadharCardDetail2">
-              <div className="ocrHeader">
-                <div className="ocrHeaderText">{title1 + " Detail"}</div>
-              </div>
 
-              <div className="ocrDetail">
-                {PanCardData && (
-                  <>
-                    <div className="nameDetail">
-                      {" "}
-                      Name :{" "}
-                      <span className="nameValue">{PanCardData?.name}</span>
-                    </div>
-                    <div className="nameDetail">
-                      {" "}
-                      Father's Name :{" "}
-                      <span className="nameValue">{PanCardData?.father}</span>
-                    </div>
-                    <div className="nameDetail">
-                      {" "}
-                      DOB : <span className="nameValue">{PanCardData.dob}</span>
-                    </div>
-               
-                    {
-                      <div className="nameDetail">
-                        {" "}
-                        Card No. :{" "}
-                        <span className="nameValue">{PanCardData.no}</span>
-                      </div>
-                    }
-                
-                  </>
-                )}
-              </div>
-            </div>
-          )} */}
         </div>
 
-        {/*Detail After OCR*/}
+        {/*Detail After OCR of Aadhar*/}
         {title1 === "Aadhar Front" && (
           <div className="rowaadhar1">
             {aadharFrontData && (
@@ -411,16 +357,11 @@ const UploadAadhar = ({ title1, title2 }) => {
                     getPanText();
                   }}
                 />)}
-                {title1 === "Resume Parser" && (<UploadButton
-                  onClick={() => {
-
-                  }}
-                />)}
-
               </>
             )}
           </>
         ) : null}
+
       </div>
       <BackGroundImage />
       <Footer />
