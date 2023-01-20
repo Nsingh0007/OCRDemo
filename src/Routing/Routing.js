@@ -9,6 +9,7 @@ import About from "../pages/About/About";
 import BankDetail from "../pages/bankForm/BankDetail";
 import BankForm from "../pages/bankForm/BankForm";
 import UploadAadhar from "../pages/UploadAadhar/UploadAadhar";
+import UploadResume from "../pages/UploadResume/UploadResume";
 
 const Routing = () => {
   return (
@@ -20,6 +21,7 @@ const Routing = () => {
           element={<UploadAadhar title1="Aadhar Front" title2="Aadhar Back" />}
         />
         <Route path="/pan" element={<UploadAadhar title1="Pan Card" />} />
+        <Route path="/resume" element={<UploadResume />} />
         <Route path="/bankform" element={<BankForm />} />
         <Route path="/bankdetail" element={<BankDetail />} />
         <Route path="*" element={<Navigate to={<About />} />} />

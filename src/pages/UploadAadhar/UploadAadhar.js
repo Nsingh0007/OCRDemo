@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import DownloadIcom from "../../assets/images/arrow-down.png";
 import RightArrowIcon from "../../assets/images/arrow-right.png";
@@ -10,6 +10,7 @@ import DragDrop from "../fileDragandDrop/DragAndDrop";
 import UploadButton from "../uploadButton/UploadButton";
 import "./uploadaadhar.css";
 
+
 const UploadAadhar = ({ title1, title2 }) => {
   var navigate = useNavigate();
   const [loader, setLoader] = useState(false);
@@ -20,6 +21,7 @@ const UploadAadhar = ({ title1, title2 }) => {
   const [aadharFrontData, setAadharFrontData] = useState(null);
   const [aadharBackData, setAadharBackData] = useState(null);
   const [PanCardData, setPanCardData] = useState(null);
+
 
   const getAadharText = async () => {
     setLoader(true);
@@ -119,8 +121,10 @@ const UploadAadhar = ({ title1, title2 }) => {
     setImageFile1(file);
     const reader = new FileReader();
     reader.readAsDataURL(file);
+
     reader.onload = (r) => {
-      setFile1(r.target.result);
+      console.log("text", r.target.result);
+        setFile1(r.target.result);
     };
   };
 
@@ -152,7 +156,7 @@ const UploadAadhar = ({ title1, title2 }) => {
 
     link.click();
   };
-
+  
   return (
     <div className="upload1">
       {loader && <MainLoader />}
@@ -168,13 +172,13 @@ const UploadAadhar = ({ title1, title2 }) => {
         </div>
         {((aadharFrontData && aadharFrontData?.no === aadharBackData?.no) ||
           PanCardData) && (
-          <div className="downloadBtn">
-            <img alt="Download icon" src={DownloadIcom} />
-            <button className="btnDownload" onClick={()=>exportData()}>
-              Download
-            </button>
-          </div>
-        )}
+            <div className="downloadBtn">
+              <img alt="Download icon" src={DownloadIcom} />
+              <button className="btnDownload" onClick={() => exportData()}>
+                Download
+              </button>
+            </div>
+          )}
       </div>
       <div className="uploadAadharContent">
         <div className="rowaadhar1">
@@ -182,9 +186,11 @@ const UploadAadhar = ({ title1, title2 }) => {
             <div className="aadharCard">
               <div className="aadharText">{title1}</div>
               {file1 ? (
-                <img height={300} alt="File 1" src={file1} />
+                <>
+                  <img height={300} alt="File 1" src={file1} />
+                </>
               ) : (
-                <div className="aadharBox">
+                <div className="aadharBox" >
                   <DragDrop onUpload={(e) => handleChange(e)} />
                 </div>
               )}
@@ -247,9 +253,10 @@ const UploadAadhar = ({ title1, title2 }) => {
               </div>
             </div>
           )}
+
         </div>
 
-        {/*Detail After OCR*/}
+        {/*Detail After OCR of Aadhar*/}
         {title1 === "Aadhar Front" && (
           <div className="rowaadhar1">
             {aadharFrontData && (
@@ -258,7 +265,7 @@ const UploadAadhar = ({ title1, title2 }) => {
                   <div className="ocrHeaderText">{title1 + " Detail"}</div>
                 </div>
                 {aadharBackData?.no !== null &&
-                aadharFrontData?.no === aadharBackData?.no ? (
+                  aadharFrontData?.no === aadharBackData?.no ? (
                   <div className="ocrDetail">
                     <div className="nameDetail">
                       {" "}
@@ -344,14 +351,17 @@ const UploadAadhar = ({ title1, title2 }) => {
                 ) : null}
               </>
             ) : (
-              <UploadButton
-                onClick={() => {
-                  getPanText();
-                }}
-              />
+              <>
+                {title1 === "Pan Card" && (<UploadButton
+                  onClick={() => {
+                    getPanText();
+                  }}
+                />)}
+              </>
             )}
           </>
         ) : null}
+
       </div>
       <BackGroundImage />
       <Footer />
