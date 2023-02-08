@@ -108,7 +108,7 @@ const UploadResume = () => {
       </div>
       <div className="uploadAadharContent">
         <div className="rowaadhar1">
-          <div className="aadharCard">
+          <div className="aadharCard" style={{ minWidth: "180px" }}>
             <div className="aadharText">Resume Parser</div>
             {pdfUrl ? (
               <div>
@@ -188,27 +188,31 @@ const UploadResume = () => {
                   <div className="ocrHeaderText">Education</div>
                 </div>
 
-                <div className="ocrDetail">
-                  <>
-                    <div className="nameDetail">
-                      {" "}
-                      Degree :{" "}
-                      <span className="nameValue">
-                        {Object.keys(resumeData?.education)[0]}
-                      </span>
-                    </div>
-                    {/* <div className="nameDetail">
+                <div className="ocrDetail" style={{ flexDirection: "row" }}>
+                  {resumeData?.education_degree.map((item, index) => (
+                    <div>
+                      <div className="nameDetail">
+                        {" "}
+                        Degree :{" "}
+                        <span className="nameValue">
+                          {/* {Object.keys(resumeData?.education)[0]} */}
+                          {item}
+                        </span>
+                      </div>
+                      {/* <div className="nameDetail">
                       {" "}
                       University: <span className="nameValue"></span>
                     </div> */}
-                    <div className="nameDetail">
-                      {" "}
-                      Year :{" "}
-                      <span className="nameValue">
-                        {Object.values(resumeData?.education)[0]}
-                      </span>
+                      <div className="nameDetail">
+                        {" "}
+                        Year :{" "}
+                        <span className="nameValue">
+                          {/* {Object.values(resumeData?.education)[0]} */}
+                          {resumeData?.education_year[index]}
+                        </span>
+                      </div>
                     </div>
-                  </>
+                  ))}
                 </div>
               </div>
               <div
@@ -247,7 +251,7 @@ const UploadResume = () => {
                   <div className="ocrHeaderText">Skills</div>
                 </div>
 
-                <div className="ocrDetail" style={{ flexWrap: "wrap" }}>
+                <div className="ocrDetail" style={{ flexWrap: "wrap", flexDirection: "row", minHeight: "180px", height: "auto" }}>
                   <>
                     {resumeData.skills.map((item) => (
                       <div className="nameDetail">
