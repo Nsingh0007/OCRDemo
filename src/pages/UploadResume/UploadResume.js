@@ -188,7 +188,7 @@ const UploadResume = () => {
                   <div className="ocrHeaderText">Education</div>
                 </div>
 
-                <div className="ocrDetail" style={{ flexDirection: "row" }}>
+                <div className="ocrDetail" style={{ flexDirection: "row",flexWrap:"wrap" }}>
                   {resumeData?.education_degree.map((item, index) => (
                     <div>
                       <div className="nameDetail">
